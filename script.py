@@ -3,8 +3,21 @@ from pygame import mixer
 
 #initializing the window
 window = Tk()
-window.geometry('300x300')
+window.geometry('400x400')
 window.title("Newzic Player")
+
+#adding and configuring the toolbar/menubar
+toolbar = Menu(window)
+window.config(menu=toolbar)
+#creating the sub-menu
+submenu = Menu(toolbar, tearoff=0)
+toolbar.add_cascade(label="File", menu=submenu)
+submenu.add_command(label="Open file")
+submenu.add_command(label="Exit")
+
+submenu = Menu(toolbar, tearoff=0)
+toolbar.add_cascade(label="Help", menu=submenu)
+submenu.add_command(label="About Us")
 
 mixer.init() #initializing pygame mixer
 
