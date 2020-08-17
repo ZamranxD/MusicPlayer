@@ -1,5 +1,17 @@
 from tkinter import *
+import tkinter.messagebox
 from pygame import mixer
+
+
+#functions for the toolbar
+def about_us():
+    tkinter.messagebox.showinfo("About Newzic Player", "This is some random info lmao")
+
+def close_window():
+    window.destroy()
+
+
+
 
 #initializing the window
 window = Tk()
@@ -13,11 +25,11 @@ window.config(menu=toolbar)
 submenu = Menu(toolbar, tearoff=0)
 toolbar.add_cascade(label="File", menu=submenu)
 submenu.add_command(label="Open file")
-submenu.add_command(label="Exit")
+submenu.add_command(label="Exit", command=close_window)
 
 submenu = Menu(toolbar, tearoff=0)
 toolbar.add_cascade(label="Help", menu=submenu)
-submenu.add_command(label="About Us")
+submenu.add_command(label="About Us", command=about_us)
 
 mixer.init() #initializing pygame mixer
 
