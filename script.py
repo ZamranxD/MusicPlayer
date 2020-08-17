@@ -5,10 +5,22 @@ from pygame import mixer
 
 #functions for the toolbar
 def about_us():
-    tkinter.messagebox.showinfo("About Newzic Player", "This is some random info lmao")
+    tkinter.messagebox.showinfo("About Newzic Player", "This is some random info.")
 
 def close_window():
     window.destroy()
+
+#functions for the start and stop buttons and the volume control
+def play_music():
+    mixer.music.load("nani.mp3")
+    mixer.music.play()
+
+def stop_music():
+    mixer.music.stop()
+
+def volume_control(val):
+    volume = int(val) / 100
+    mixer.music.set_volume(volume)
 
 
 
@@ -31,19 +43,8 @@ submenu = Menu(toolbar, tearoff=0)
 toolbar.add_cascade(label="Help", menu=submenu)
 submenu.add_command(label="About Us", command=about_us)
 
-mixer.init() #initializing pygame mixer
+mixer.init() #initializing pygame mixer for volume control
 
-#functions for the start and stop buttons and the volume control
-def play_music():
-    mixer.music.load("nani.mp3")
-    mixer.music.play()
-
-def stop_music():
-    mixer.music.stop()
-
-def volume_control(val):
-    volume = int(val) / 100
-    mixer.music.set_volume(volume)
 
 
 text = Label(window, text="Sample text I guess..")
