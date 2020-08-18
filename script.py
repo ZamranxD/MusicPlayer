@@ -1,6 +1,7 @@
 from tkinter import *
 import tkinter.messagebox
 from pygame import mixer
+import tkinter.filedialog
 
 
 #functions for the toolbar
@@ -10,10 +11,17 @@ def about_us():
 def close_window():
     window.destroy()
 
+def browse():
+    global filename
+    filename = tkinter.filedialog.askopenfilename()
+
 #functions for the start and stop buttons and the volume control
 def play_music():
-    mixer.music.load("nani.mp3")
-    mixer.music.play()
+    try:
+        mixer.music.load(filename)
+        mixer.music.play()
+    except:
+        tkinter.messagebox.showerror("No file selected", "Please make sure to open a file first before clicking play")
 
 def stop_music():
     mixer.music.stop()
@@ -36,7 +44,7 @@ window.config(menu=toolbar)
 #creating the sub-menu
 submenu = Menu(toolbar, tearoff=0)
 toolbar.add_cascade(label="File", menu=submenu)
-submenu.add_command(label="Open file")
+submenu.add_command(label="Open file", command=browse)
 submenu.add_command(label="Exit", command=close_window)
 
 submenu = Menu(toolbar, tearoff=0)
