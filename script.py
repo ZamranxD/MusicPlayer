@@ -2,6 +2,7 @@ from tkinter import *
 import tkinter.messagebox
 from pygame import mixer
 import tkinter.filedialog
+import os
 
 
 #functions for the toolbar
@@ -20,11 +21,14 @@ def play_music():
     try:
         mixer.music.load(filename)
         mixer.music.play()
+        status_bar['text'] = f"Playing {os.path.basename(filename)}"
     except:
-        tkinter.messagebox.showerror("No file selected", "Please make sure to open a file first before clicking play")
+        tkinter.messagebox.showerror("No file selected", "Please make sure to open a file first before clicking play.")
 
 def stop_music():
     mixer.music.stop()
+    status_bar['text'] = f"{os.path.basename(filename)} Stopped"
+
 
 def volume_control(val):
     volume = int(val) / 100
@@ -76,7 +80,9 @@ scale.pack()
 
 
 
-
+#adding a statusbar at the bottom
+status_bar = Label(window, text="Welcome to Newzic Player", relief=SUNKEN)
+status_bar.pack(side=BOTTOM, fill=X)
 
 
 
