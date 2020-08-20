@@ -50,7 +50,6 @@ def pause_music():
 
 #initializing the window
 window = Tk()
-window.geometry('400x400')
 window.title("Newzic Player")
 
 #adding and configuring the toolbar/menubar
@@ -71,20 +70,23 @@ mixer.init() #initializing pygame mixer for volume control
 
 
 text = Label(window, text="Sample text I guess..")
-text.pack()
+text.pack(pady=10)
 
+#making a new frame(div)to group these buttons together
+midFrame = Frame(window)
+midFrame.pack(padx=60, pady=7) 
 #play, pause and stop buttons
 start_photo = PhotoImage(file='play.png')
-play_btn = Button(window, image=start_photo, command=play_music)
-play_btn.pack()
+play_btn = Button(midFrame, image=start_photo, command=play_music)
+play_btn.pack(side=LEFT, padx=5)
 
 stop_photo = PhotoImage(file='stop.png')
-stop_btn = Button(window, image=stop_photo, command=stop_music)
-stop_btn.pack()
+stop_btn = Button(midFrame, image=stop_photo, command=stop_music)
+stop_btn.pack(side=LEFT, padx=5)
 
 pause_photo = PhotoImage(file='pause.png')
-pause_btn = Button(window, image=pause_photo, command=pause_music)
-pause_btn.pack()
+pause_btn = Button(midFrame, image=pause_photo, command=pause_music)
+pause_btn.pack(side=LEFT, padx=5)
 
 #adding a scale widget for volume control
 scale = Scale(window, from_=0, to=100, orient = HORIZONTAL, command=volume_control)
